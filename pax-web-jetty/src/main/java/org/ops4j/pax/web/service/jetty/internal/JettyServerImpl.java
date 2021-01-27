@@ -276,9 +276,11 @@ class JettyServerImpl implements JettyServer {
 		handlerCollection.addHandler(handler);
 		if (priorityComparator != null) {
 			Handler[] handlers = handlerCollection.getHandlers();
-			@SuppressWarnings("unchecked")
-			Comparator<Handler> comparator = (Comparator<Handler>) priorityComparator;
-			Arrays.sort(handlers, comparator);
+			if (handlers != null) {
+				@SuppressWarnings("unchecked")
+				Comparator<Handler> comparator = (Comparator<Handler>) priorityComparator;
+				Arrays.sort(handlers, comparator);
+			}
 		}
 	}
 
